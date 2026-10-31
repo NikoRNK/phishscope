@@ -1,0 +1,47 @@
+Return-Path: <bounce@mail-relay-77.bulkmailer.example>
+Received: from mx-in.corp-victim.example (mx-in.corp-victim.example [10.0.0.5]) by inbox.corp-victim.example with ESMTPS; Tue, 14 Oct 2025 08:19:44 +0000
+Received: from mail-relay-77.bulkmailer.example (mail-relay-77.bulkmailer.example [198.51.100.77]) by mx-in.corp-victim.example (Postfix) with ESMTP id 4cmXyz03; Tue, 14 Oct 2025 08:19:41 +0000
+Received: from [10.1.1.9] (unknown [203.0.113.45]) by mail-relay-77.bulkmailer.example with ESMTPA; Tue, 14 Oct 2025 08:19:30 +0000
+Authentication-Results: mx-in.corp-victim.example; spf=pass smtp.mailfrom=bounce@mail-relay-77.bulkmailer.example; dkim=none; dmarc=fail (p=none) header.from=microsoft.com
+From: "Microsoft Account Team" <no-reply@microsoft.com>
+Reply-To: helpdesk@rnicrosoft-support.example
+To: carol@corp-victim.example
+Cc: dave@corp-victim.example
+Subject: Action required: your Microsoft 365 password expires within 24 hours
+Date: Tue, 14 Oct 2025 08:19:28 +0000
+Message-ID: <20251014.0003@mail-relay-77.bulkmailer.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MIXED03"
+
+--MIXED03
+Content-Type: multipart/alternative; boundary="ALT03"
+
+--ALT03
+Content-Type: text/plain; charset="utf-8"
+
+Your password expires within 24 hours. Verify your account immediately:
+https://login.microsoftonline.com/reset
+If the link does not work: http://203.0.113.45/verify
+Short link: https://bit.ly/3xAmple
+
+--ALT03
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Dear user,</p>
+<p>Your Microsoft 365 password <b>expires within 24 hours</b>. Account suspended if no action.</p>
+<p><a href="http://rnicrosoft-support.example/login?u=carol@corp-victim.example">https://login.microsoftonline.com/reset</a></p>
+<p>Alternate: <a href="http://203.0.113.45/verify">click here</a> &middot; <a href="https://bit.ly/3xAmple">short link</a></p>
+<p>See the attached secure document.</p>
+</body></html>
+
+--ALT03--
+
+--MIXED03
+Content-Type: text/html; name="Secure_Document.html"
+Content-Disposition: attachment; filename="Secure_Document.html"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+UGhpc2hTY29wZSB0cmFpbmluZyBzYW1wbGUgLSBpbmVydCBwbGFjZWhvbGRlciBhdHRhY2htZW50LjwvYm9keT48L2h0bWw+
+
+--MIXED03--

@@ -1,0 +1,347 @@
+{
+  "tool": "phishscope 1.0.0",
+  "case_id": "PI-A104FFF3",
+  "sample": {
+    "path": "samples/phish_01.eml",
+    "sha256": "a104fff377f54315f12591b5d5de72761627aafcf504bf5e2ea36dadeef76423"
+  },
+  "verdict": "MALICIOUS",
+  "confidence": "HIGH",
+  "risk_score": 100,
+  "identity": {
+    "subject": "Action required: your Microsoft 365 password expires within 24 hours",
+    "date": "Tue, 14 Oct 2025 08:12:28 +0000",
+    "from_name": "Microsoft Account Team",
+    "from_addr": "no-reply@microsoft.com",
+    "from_domain": "microsoft.com",
+    "return_path": "bounce@mail-relay-77.bulkmailer.example",
+    "return_path_domain": "mail-relay-77.bulkmailer.example",
+    "reply_to": "helpdesk@rnicrosoft-support.example",
+    "reply_to_domain": "rnicrosoft-support.example",
+    "message_id": "20251014.0001@mail-relay-77.bulkmailer.example",
+    "message_id_domain": "mail-relay-77.bulkmailer.example",
+    "x_originating_ip": "",
+    "recipients": [
+      "alice@corp-victim.example"
+    ]
+  },
+  "origin_ip": "203.0.113.45",
+  "received_chain": [
+    {
+      "index": 1,
+      "from_host": "[10.1.1.9]",
+      "by_host": "mail-relay-77.bulkmailer.example",
+      "ip": "203.0.113.45",
+      "public_ip": true,
+      "timestamp": "2025-10-14T08:12:30+00:00",
+      "delay_s": null,
+      "raw": "from [10.1.1.9] (unknown [203.0.113.45]) by mail-relay-77.bulkmailer.example with ESMTPA; Tue, 14 Oct 2025 08:12:30 +0000"
+    },
+    {
+      "index": 2,
+      "from_host": "mail-relay-77.bulkmailer.example",
+      "by_host": "mx-in.corp-victim.example",
+      "ip": "198.51.100.77",
+      "public_ip": true,
+      "timestamp": "2025-10-14T08:12:41+00:00",
+      "delay_s": 11,
+      "raw": "from mail-relay-77.bulkmailer.example (mail-relay-77.bulkmailer.example [198.51.100.77]) by mx-in.corp-victim.example (Postfix) with ESMTP id 4cmXyz01; Tue, 14 Oct 2025 08:12:41 +0000"
+    },
+    {
+      "index": 3,
+      "from_host": "mx-in.corp-victim.example",
+      "by_host": "inbox.corp-victim.example",
+      "ip": "10.0.0.5",
+      "public_ip": false,
+      "timestamp": "2025-10-14T08:12:44+00:00",
+      "delay_s": 3,
+      "raw": "from mx-in.corp-victim.example (mx-in.corp-victim.example [10.0.0.5]) by inbox.corp-victim.example with ESMTPS; Tue, 14 Oct 2025 08:12:44 +0000"
+    }
+  ],
+  "authentication": {
+    "results": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "fail"
+    },
+    "details": {
+      "authserv_id": "mx-in.corp-victim.example",
+      "smtp.mailfrom": "bounce@mail-relay-77.bulkmailer.example",
+      "header.from": "microsoft.com"
+    },
+    "dkim_signatures": [],
+    "alignment": {
+      "spf_aligned": false,
+      "dkim_aligned": null
+    }
+  },
+  "dns": {
+    "available": false
+  },
+  "links": [
+    {
+      "url": "http://rnicrosoft-support.example/login?u=alice@corp-victim.example",
+      "host": "rnicrosoft-support.example",
+      "anchor_text": "https://login.microsoftonline.com/reset",
+      "flags": [
+        "no_tls",
+        "anchor_mismatch"
+      ]
+    },
+    {
+      "url": "http://203.0.113.45/verify",
+      "host": "203.0.113.45",
+      "anchor_text": "click here",
+      "flags": [
+        "ip_host",
+        "no_tls"
+      ]
+    },
+    {
+      "url": "https://bit.ly/3xAmple",
+      "host": "bit.ly",
+      "anchor_text": "short link",
+      "flags": [
+        "shortener"
+      ]
+    },
+    {
+      "url": "https://login.microsoftonline.com/reset",
+      "host": "login.microsoftonline.com",
+      "anchor_text": "",
+      "flags": []
+    }
+  ],
+  "attachments": [
+    {
+      "filename": "Secure_Document.html",
+      "content_type": "text/html",
+      "size": 84,
+      "sha256": "d6573e0e82be31b8f167cbe8fc1afb827e664c4750366b53fa138384e237e00a",
+      "md5": "8b6d234ececf8dca340eae3732566fbf"
+    }
+  ],
+  "threat_intel": null,
+  "findings": [
+    {
+      "id": "AUTH_DMARC_FAIL",
+      "category": "auth",
+      "title": "DMARC = fail",
+      "weight": 25,
+      "evidence": "Authentication-Results: dmarc=fail",
+      "mitre": "T1656"
+    },
+    {
+      "id": "LOOKALIKE_SENDER",
+      "category": "identity",
+      "title": "Reply-To domain imitates 'microsoft'",
+      "weight": 25,
+      "evidence": "rnicrosoft-support[.]example resembles microsoft",
+      "mitre": "T1583.001"
+    },
+    {
+      "id": "URL_LOOKALIKE",
+      "category": "url",
+      "title": "Link domain imitates 'microsoft'",
+      "weight": 25,
+      "evidence": "hxxp://rnicrosoft-support[.]example/login?u=alice@corp-victim[.]example",
+      "mitre": "T1566.002"
+    },
+    {
+      "id": "URL_ANCHOR_MISMATCH",
+      "category": "url",
+      "title": "Link text shows one domain, href goes to another",
+      "weight": 20,
+      "evidence": "hxxp://rnicrosoft-support[.]example/login?u=alice@corp-victim[.]example",
+      "mitre": "T1566.002"
+    },
+    {
+      "id": "RETURN_PATH_MISMATCH",
+      "category": "identity",
+      "title": "Envelope sender differs from visible From",
+      "weight": 15,
+      "evidence": "From no-reply@microsoft.com / Return-Path bounce@mail-relay-77.bulkmailer.example",
+      "mitre": "T1656"
+    },
+    {
+      "id": "REPLY_TO_MISMATCH",
+      "category": "identity",
+      "title": "Replies are redirected to another domain",
+      "weight": 15,
+      "evidence": "Reply-To helpdesk@rnicrosoft-support.example vs From no-reply@microsoft.com",
+      "mitre": "T1656"
+    },
+    {
+      "id": "URL_IP_HOST",
+      "category": "url",
+      "title": "Link points to a raw IP address",
+      "weight": 15,
+      "evidence": "hxxp://203[.]0[.]113[.]45/verify",
+      "mitre": "T1566.002"
+    },
+    {
+      "id": "ATT_RISKY_EXT",
+      "category": "attachment",
+      "title": "High-risk attachment type (.html)",
+      "weight": 15,
+      "evidence": "Secure_Document.html sha256=d6573e0e82be31b8...",
+      "mitre": "T1566.001"
+    },
+    {
+      "id": "SPF_PASS_NOT_ALIGNED",
+      "category": "auth",
+      "title": "SPF passes - for a DIFFERENT domain than From",
+      "weight": 12,
+      "evidence": "Return-Path mail-relay-77.bulkmailer.example vs From microsoft.com",
+      "mitre": "T1656"
+    },
+    {
+      "id": "AUTH_DKIM_NONE",
+      "category": "auth",
+      "title": "DKIM = none",
+      "weight": 8,
+      "evidence": "Authentication-Results: dkim=none",
+      "mitre": "T1656"
+    },
+    {
+      "id": "URL_SHORTENER",
+      "category": "url",
+      "title": "URL shortener hides the real destination",
+      "weight": 8,
+      "evidence": "hxxps://bit[.]ly/3xAmple",
+      "mitre": "T1566.002"
+    },
+    {
+      "id": "CONTENT_URGENCY",
+      "category": "content",
+      "title": "Pressure / urgency language",
+      "weight": 8,
+      "evidence": "account suspend, action required, immediately, password  expir",
+      "mitre": ""
+    },
+    {
+      "id": "MSGID_MISMATCH",
+      "category": "identity",
+      "title": "Message-ID generated by a different domain",
+      "weight": 5,
+      "evidence": "Message-ID domain mail-relay-77.bulkmailer.example",
+      "mitre": ""
+    },
+    {
+      "id": "URL_NO_TLS",
+      "category": "url",
+      "title": "Link is plain HTTP (no TLS)",
+      "weight": 4,
+      "evidence": "hxxp://rnicrosoft-support[.]example/login?u=alice@corp-victim[.]example, hxxp://203[.]0[.]113[.]45/verify",
+      "mitre": "T1566.002"
+    }
+  ],
+  "iocs": [
+    {
+      "type": "email",
+      "value": "no-reply@microsoft.com",
+      "defanged": "no-reply[@]microsoft[.]com"
+    },
+    {
+      "type": "email",
+      "value": "helpdesk@rnicrosoft-support.example",
+      "defanged": "helpdesk[@]rnicrosoft-support[.]example"
+    },
+    {
+      "type": "domain",
+      "value": "mail-relay-77.bulkmailer.example",
+      "defanged": "mail-relay-77[.]bulkmailer[.]example"
+    },
+    {
+      "type": "ip",
+      "value": "203.0.113.45",
+      "defanged": "203[.]0[.]113[.]45"
+    },
+    {
+      "type": "url",
+      "value": "http://rnicrosoft-support.example/login?u=alice@corp-victim.example",
+      "defanged": "hxxp://rnicrosoft-support[.]example/login?u=alice@corp-victim[.]example"
+    },
+    {
+      "type": "url",
+      "value": "http://203.0.113.45/verify",
+      "defanged": "hxxp://203[.]0[.]113[.]45/verify"
+    },
+    {
+      "type": "url",
+      "value": "https://bit.ly/3xAmple",
+      "defanged": "hxxps://bit[.]ly/3xAmple"
+    },
+    {
+      "type": "url",
+      "value": "https://login.microsoftonline.com/reset",
+      "defanged": "hxxps://login[.]microsoftonline[.]com/reset"
+    },
+    {
+      "type": "sha256",
+      "value": "d6573e0e82be31b8f167cbe8fc1afb827e664c4750366b53fa138384e237e00a",
+      "defanged": "d6573e0e82be31b8f167cbe8fc1afb827e664c4750366b53fa138384e237e00a",
+      "context": "Secure_Document.html"
+    }
+  ],
+  "blast_radius": {
+    "scanned": 3,
+    "matched": [
+      {
+        "source": "samples/mailstore/phish_02.eml",
+        "date": "Tue, 14 Oct 2025 08:14:28 +0000",
+        "subject": "Action required: your Microsoft 365 password expires within 24 hours",
+        "recipients": [
+          "bob@corp-victim.example"
+        ],
+        "reasons": [
+          "sender",
+          "return_path_domain",
+          "subject",
+          "url_domain",
+          "attachment_sha256",
+          "origin_ip"
+        ]
+      },
+      {
+        "source": "samples/mailstore/phish_03.eml",
+        "date": "Tue, 14 Oct 2025 08:19:28 +0000",
+        "subject": "Action required: your Microsoft 365 password expires within 24 hours",
+        "recipients": [
+          "carol@corp-victim.example",
+          "dave@corp-victim.example"
+        ],
+        "reasons": [
+          "sender",
+          "return_path_domain",
+          "subject",
+          "url_domain",
+          "attachment_sha256",
+          "origin_ip"
+        ]
+      }
+    ],
+    "patient_zero": [
+      "alice@corp-victim.example"
+    ],
+    "unique_recipients": [
+      "alice@corp-victim.example",
+      "bob@corp-victim.example",
+      "carol@corp-victim.example",
+      "dave@corp-victim.example"
+    ],
+    "scope": "limited",
+    "dates": [
+      "Tue, 14 Oct 2025 08:14:28 +0000",
+      "Tue, 14 Oct 2025 08:19:28 +0000"
+    ]
+  },
+  "recommendations": [
+    "Purge the message from every mailbox found in the blast radius (compliance search + purge).",
+    "Block sender, Return-Path domain, URLs and origin IP at the mail gateway, proxy and DNS.",
+    "Hunt proxy / DNS / EDR logs for contact with the IOCs; treat any hit as a compromised account.",
+    "Force password reset + revoke sessions/tokens for users who clicked or opened the attachment.",
+    "Warn recipients, report to the impersonated brand and the hosting provider's abuse contact.",
+    "Add the IOCs to the TIP / SIEM watchlists and record the case."
+  ]
+}

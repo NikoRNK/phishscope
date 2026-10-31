@@ -1,0 +1,10 @@
+type,value,defanged,context,case_id,verdict
+email,no-reply@microsoft.com,no-reply[@]microsoft[.]com,,PI-A104FFF3,MALICIOUS
+email,helpdesk@rnicrosoft-support.example,helpdesk[@]rnicrosoft-support[.]example,,PI-A104FFF3,MALICIOUS
+domain,mail-relay-77.bulkmailer.example,mail-relay-77[.]bulkmailer[.]example,,PI-A104FFF3,MALICIOUS
+ip,203.0.113.45,203[.]0[.]113[.]45,,PI-A104FFF3,MALICIOUS
+url,http://rnicrosoft-support.example/login?u=alice@corp-victim.example,hxxp://rnicrosoft-support[.]example/login?u=alice@corp-victim[.]example,,PI-A104FFF3,MALICIOUS
+url,http://203.0.113.45/verify,hxxp://203[.]0[.]113[.]45/verify,,PI-A104FFF3,MALICIOUS
+url,https://bit.ly/3xAmple,hxxps://bit[.]ly/3xAmple,,PI-A104FFF3,MALICIOUS
+url,https://login.microsoftonline.com/reset,hxxps://login[.]microsoftonline[.]com/reset,,PI-A104FFF3,MALICIOUS
+sha256,d6573e0e82be31b8f167cbe8fc1afb827e664c4750366b53fa138384e237e00a,d6573e0e82be31b8f167cbe8fc1afb827e664c4750366b53fa138384e237e00a,Secure_Document.html,PI-A104FFF3,MALICIOUS

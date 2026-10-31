@@ -1,0 +1,3 @@
+# Core has ZERO hard dependencies (stdlib only).
+# Optional: live SPF/DMARC DNS lookups
+dnspython>=2.4

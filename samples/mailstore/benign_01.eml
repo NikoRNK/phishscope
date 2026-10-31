@@ -1,0 +1,14 @@
+Return-Path: <bounce@news.benign-company.example>
+Received: from mx-in.corp-victim.example (mx-in.corp-victim.example [10.0.0.5]) by inbox.corp-victim.example with ESMTPS; Tue, 14 Oct 2025 07:01:12 +0000
+Received: from out1.news.benign-company.example (out1.news.benign-company.example [192.0.2.25]) by mx-in.corp-victim.example (Postfix) with ESMTP id 4cmAAA; Tue, 14 Oct 2025 07:01:10 +0000
+Authentication-Results: mx-in.corp-victim.example; spf=pass smtp.mailfrom=bounce@news.benign-company.example; dkim=pass header.d=benign-company.example; dmarc=pass (p=reject) header.from=benign-company.example
+DKIM-Signature: v=1; a=rsa-sha256; d=benign-company.example; s=sel1; c=relaxed/relaxed; h=from:to:subject; bh=abc=; b=def=
+From: "Benign Company Newsletter" <newsletter@benign-company.example>
+To: alice@corp-victim.example
+Subject: Your October product update
+Date: Tue, 14 Oct 2025 07:01:05 +0000
+Message-ID: <20251014.77@out1.news.benign-company.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Hello, here is the October release note: https://www.benign-company.example/blog/october
